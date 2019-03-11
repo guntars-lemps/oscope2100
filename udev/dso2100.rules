@@ -1,0 +1,2 @@
+SUBSYSTEM=="usb", ACTION=="add",  ENV{DEVTYPE}=="usb_device", ENV{ID_VENDOR}=="0547", ENV{ID_MODEL}=="1006", RUN+="/sbin/fxload -t an21 -I /usr/share/dso2100/DSO2100_firmware.hex -D $env{DEVNAME}"
+

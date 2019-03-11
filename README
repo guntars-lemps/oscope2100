@@ -1,0 +1,34 @@
+"Oscope 2100" is an oscilloscope software for Hantek DSO-2100 USB oscilloscope.
+
+It is based on libusb and GTK libraries. Project does not include firmware extraction utility, you can find it in "HantekDSO" project (url http://sourceforge.net/projects/hantekdso), the utility is called "dsoextractfw"
+
+DSO software depends on: 
+- libusb (library to enable user space application programs to communicate with USB devices)
+- GTKlib (GUI framework)
+To successfully build a project you need to have all development packages installed (libusb-dev, libgtk2.0-dev).
+
+
+Also you need to have fxload utility installed in order to be able to upload firmware in to the oscilloscope.
+
+
+How to BUILD:
+./configure
+make
+make install
+
+
+How to INSTALL:
+
+1. Download and compile dsoextractfw utility from HantekDSO project
+2. Find dso21001.sys file on your DSO-2100 USB drivers CD and put it in the folder with dsoextractfw utility
+3. Rename the dso21001.sys file to uppercase name DSO21001.SYS
+4. Run the program dsoextractfw. It should create two files named "DSO2100_firmware.hex" and "DSO2100_loader.hex"
+5. Move "DSO2100_firmware.hex" file to /usr/share/dso2100/
+6. Copy the file /udev/dso2100.rules to /etc/udev/rules.d/
+
+
+Now the firmware should be loaded automatically when the scope is connected to an USB port.
+Once the firmware is loaded, the blue LED on the scope starts blinking.
+You can now run software by typing "oscope2100" command in the console or make a shortcut on your desktop.
+Make sure you have sufficient privilegies on the USB device or run as root (probably not recommended in the long run).
+
